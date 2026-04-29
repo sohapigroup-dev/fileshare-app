@@ -90,7 +90,7 @@ export default function Inbox({ transfers, currentUserId, onRefresh }: InboxProp
 					<p className="text-sm text-gray-400">Aucun fichier recu</p>
 				</div>
 			) : (
-				<div className="space-y-2 max-h-96 overflow-y-auto">
+				<div className="space-y-2 max-h-[400px] overflow-y-auto scrollbar-thin pr-1">
 					{myTransfers.map(transfer => {
 						const read = isRead(transfer);
 						return (

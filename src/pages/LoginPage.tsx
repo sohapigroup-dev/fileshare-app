@@ -107,7 +107,7 @@ export default function LoginPage() {
 								</div>
 								<p className="text-xs text-gray-400">
 									{directeurInfo?.exists && directeurInfo.nom !== nom
-										? `Pris par ${directeurInfo.nom}`
+										? 'Non disponible'
 										: 'Diffusion + P2P'
 									}
 								</p>
@@ -131,16 +131,7 @@ export default function LoginPage() {
 						</div>
 					</div>
 
-					{/* Info directeur existant */}
-					{directeurInfo?.exists && (
-						<div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
-							<p className="text-xs text-brand-orange">
-								Un directeur existe deja : <strong>{directeurInfo.nom}</strong>
-							</p>
-						</div>
-					)}
-
-					{/* Erreur */}
+						{/* Erreur */}
 					{error && (
 						<div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
 							<p className="text-xs text-brand-red">{error}</p>
@@ -157,10 +148,7 @@ export default function LoginPage() {
 					</button>
 				</div>
 
-				<p className="text-center text-xs text-gray-400 mt-4">
-					Reseau interne Hostolink
-				</p>
-			</div>
+							</div>
 		</div>
 	);
 }

@@ -55,7 +55,7 @@ export default function UserList({ users, currentUserId, selectedUserId, onSelec
 				</svg>
 			</div>
 
-			<div className="space-y-1 max-h-[calc(100vh-300px)] overflow-y-auto">
+			<div className="space-y-1 max-h-[400px] overflow-y-auto scrollbar-thin">
 				{/* Broadcast option */}
 				<button
 					onClick={() => handleSelect('broadcast')}
@@ -156,9 +156,14 @@ export default function UserList({ users, currentUserId, selectedUserId, onSelec
 					<>
 						<div className="text-xs text-gray-400 mt-3 mb-1">Hors ligne ({offlineCollabs.length})</div>
 						{offlineCollabs.map(user => (
-							<div
+							<button
 								key={user.id}
-								className="w-full p-2 rounded-lg opacity-50"
+								onClick={() => handleSelect(user.id)}
+								className={`w-full p-2 rounded-lg text-left transition-all ${
+									selectedUserId === user.id
+										? 'bg-gray-200/50 dark:bg-navy-600/50 border border-gray-400'
+										: 'hover:bg-gray-50 dark:hover:bg-navy-700 border border-transparent opacity-60 hover:opacity-100'
+								}`}
 							>
 								<div className="flex items-center gap-2">
 									<div className="w-8 h-8 bg-gray-200 dark:bg-navy-600 rounded-full flex items-center justify-center">
@@ -171,7 +176,7 @@ export default function UserList({ users, currentUserId, selectedUserId, onSelec
 										<p className="text-xs text-gray-400">Collaborateur</p>
 									</div>
 								</div>
-							</div>
+							</button>
 						))}
 					</>
 				)}

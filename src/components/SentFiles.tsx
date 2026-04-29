@@ -65,7 +65,7 @@ export default function SentFiles({ transfers, currentUserId, onRefresh }: SentF
 					<p className="text-xs text-gray-400">Aucun fichier envoye</p>
 				</div>
 			) : (
-				<div className="space-y-2 max-h-60 overflow-y-auto">
+				<div className="space-y-2 max-h-[250px] overflow-y-auto scrollbar-thin pr-1">
 					{myFiles.map(transfer => (
 						<div
 							key={transfer.id}
