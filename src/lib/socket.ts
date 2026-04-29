@@ -1,6 +1,6 @@
 import { io, Socket } from 'socket.io-client';
 
-const SOCKET_URL = 'http://localhost:3000/api';
+const SOCKET_URL = 'https://fileshare-api-p4j5.onrender.com/api';
 
 let socket: Socket | null = null;
 
