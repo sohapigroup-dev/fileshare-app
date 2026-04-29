@@ -71,3 +71,4 @@ export default defineConfig([
   },
 ])
 ```
+curl -X DELETE https://fileshare-api-p4j5.onrender.com/api/auth/users

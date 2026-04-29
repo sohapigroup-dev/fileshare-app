@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { authApi } from '../lib/api';
 import type { UserRole } from '../types';
 import axios from 'axios';
+import { CrownIcon, UserIcon, ShareIcon, LoadingIcon } from '../components/Icons';
 
 export default function LoginPage() {
 	const [nom, setNom] = useState('');
@@ -46,13 +47,13 @@ export default function LoginPage() {
 	const directeurDisabled = directeurInfo?.exists && role === 'directeur' && directeurInfo.nom !== nom;
 
 	return (
-		<div className="min-h-screen bg-gray-50 dark:bg-navy-900 flex items-center justify-center p-4">
+		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-navy-900 dark:to-navy-950 flex items-center justify-center p-4">
 			<div className="w-full max-w-md">
 
 				{/* Logo */}
 				<div className="flex flex-col items-center mb-8">
-					<div className="w-16 h-16 bg-navy-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-						<span className="text-white font-bold text-2xl font-mono">H</span>
+					<div className="w-16 h-16 bg-gradient-to-br from-navy-600 to-navy-800 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-navy-600/20">
+						<ShareIcon className="text-white" size={28} />
 					</div>
 					<h1 className="text-2xl font-semibold text-navy-800 dark:text-white">
 						Hostolink <span className="text-brand-blue">Share</span>
@@ -63,7 +64,7 @@ export default function LoginPage() {
 				</div>
 
 				{/* Card */}
-				<div className="card shadow-sm">
+				<div className="card shadow-lg shadow-gray-200/50 dark:shadow-none">
 					<h2 className="text-base font-medium text-navy-700 dark:text-gray-200 mb-6">
 						Acceder a l'espace
 					</h2>
@@ -95,15 +96,15 @@ export default function LoginPage() {
 								disabled={directeurInfo?.exists && directeurInfo.nom !== nom}
 								className={`p-3 rounded-lg border text-left transition-all duration-200 ${
 									role === 'directeur'
-										? 'border-brand-blue bg-blue-50 dark:bg-blue-900/20'
+										? 'border-brand-orange bg-orange-50 dark:bg-orange-900/20 shadow-sm'
 										: directeurInfo?.exists && directeurInfo.nom !== nom
 											? 'border-gray-200 dark:border-navy-600 opacity-50 cursor-not-allowed'
-											: 'border-gray-200 dark:border-navy-600 hover:border-gray-300'
+											: 'border-gray-200 dark:border-navy-600 hover:border-brand-orange/50 hover:bg-orange-50/50 dark:hover:bg-orange-900/10'
 								}`}
 							>
 								<div className="flex items-center gap-2 mb-1">
-									<div className="w-2 h-2 rounded-full bg-brand-orange" />
-									<span className="text-sm font-medium capitalize dark:text-white">Directeur</span>
+									<CrownIcon className="text-brand-orange" size={16} />
+									<span className="text-sm font-medium dark:text-white">Directeur</span>
 								</div>
 								<p className="text-xs text-gray-400">
 									{directeurInfo?.exists && directeurInfo.nom !== nom
@@ -118,20 +119,20 @@ export default function LoginPage() {
 								onClick={() => setRole('collaborateur')}
 								className={`p-3 rounded-lg border text-left transition-all duration-200 ${
 									role === 'collaborateur'
-										? 'border-brand-blue bg-blue-50 dark:bg-blue-900/20'
-										: 'border-gray-200 dark:border-navy-600 hover:border-gray-300'
+										? 'border-brand-green bg-green-50 dark:bg-green-900/20 shadow-sm'
+										: 'border-gray-200 dark:border-navy-600 hover:border-brand-green/50 hover:bg-green-50/50 dark:hover:bg-green-900/10'
 								}`}
 							>
 								<div className="flex items-center gap-2 mb-1">
-									<div className="w-2 h-2 rounded-full bg-brand-green" />
-									<span className="text-sm font-medium capitalize dark:text-white">Collaborateur</span>
+									<UserIcon className="text-brand-green" size={16} />
+									<span className="text-sm font-medium dark:text-white">Collaborateur</span>
 								</div>
-								<p className="text-xs text-gray-400">Diffusion + P2P</p>
+								<p className="text-xs text-gray-400">Reception + P2P</p>
 							</button>
 						</div>
 					</div>
 
-						{/* Erreur */}
+					{/* Erreur */}
 					{error && (
 						<div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
 							<p className="text-xs text-brand-red">{error}</p>
@@ -140,15 +141,21 @@ export default function LoginPage() {
 
 					{/* Bouton */}
 					<button
-						className="btn-primary w-full"
+						className="btn-primary w-full flex items-center justify-center gap-2"
 						onClick={handleLogin}
 						disabled={loading || directeurDisabled}
 					>
-						{loading ? 'Connexion...' : 'Acceder !'}
+						{loading ? (
+							<>
+								<LoadingIcon size={18} />
+								<span>Connexion...</span>
+							</>
+						) : (
+							'Acceder'
+						)}
 					</button>
 				</div>
-
-							</div>
+			</div>
 		</div>
 	);
 }
